@@ -86,7 +86,7 @@ end
 local function isValidVehicle(vehicle)
     if Config.UseGeneralVehicleConfig then 
         if Config.EmergencyVehiclesOnly then
-            return GetVehicleClass(vehicle) == 18
+            return GetVehicleClass(vehicle) == 17
         end
         return true
     end
