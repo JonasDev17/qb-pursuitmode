@@ -143,12 +143,19 @@ end
 
 local function changeVehicleMode(vehicle)
     local vehicleModel = getModelFromHash(GetEntityModel(vehicle))
-
-    repeat
-        gear = gear % #Config.VehicleModes + 1
-        currentVehicleMode = Config.VehicleModes[gear]
-    until Config.VehiclesConfig[vehicleModel][currentVehicleMode] ~= nil
-
+    
+    if UseGeneralVehicleConfig then
+        repeat
+            gear = gear % #Config.VehicleModes + 1
+            currentVehicleMode = Config.VehicleModes[gear]
+        until Config.GeneralVehicleConfig[currentVehicleMode] ~= nil
+    else
+        repeat
+            gear = gear % #Config.VehicleModes + 1
+            currentVehicleMode = Config.VehicleModes[gear]
+        until Config.VehiclesConfig[vehicleModel][currentVehicleMode] ~= nil
+    end
+    
     if currentVehicle ~= nil and vehicle ~= currentVehicle then
         gear = 1
     end
